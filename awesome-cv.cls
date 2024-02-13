@@ -120,13 +120,45 @@
 
 %-------------------------------------------------------------------------------
 %                Configuration for colors
+% FRENCH CV
+%-------------------------------------------------------------------------------
+% % Gray-scale colors
+% \definecolor{white}{HTML}{FFFFFF}
+% \definecolor{black}{HTML}{242E3C}
+% \definecolor{darkgray}{HTML}{242E3C}
+% \definecolor{gray}{HTML}{475A79}
+% \definecolor{lightgray}{HTML}{242E3C}
+% % Basic colors
+% \definecolor{green}{HTML}{C2E15F}
+% \definecolor{orange}{HTML}{FDA333}
+% \definecolor{purple}{HTML}{D3A4F9}
+% \definecolor{red}{HTML}{FB4485}
+% \definecolor{blue}{HTML}{6CE0F1}
+% % Text colors
+% \definecolor{darktext}{HTML}{242E3C}
+% \colorlet{text}{darkgray}
+% \colorlet{graytext}{gray}
+% \colorlet{lighttext}{lightgray}
+% \colorlet{sectiondivider}{gray}
+% % Awesome colors
+% \definecolor{awesome-emerald}{HTML}{00A388}
+% \definecolor{awesome-skyblue}{HTML}{0395DE}
+% \definecolor{awesome-red}{HTML}{75263A}
+% \definecolor{awesome-pink}{HTML}{EF4089}
+% \definecolor{awesome-orange}{HTML}{FF6138}
+% \definecolor{awesome-nephritis}{HTML}{27AE60}
+% \definecolor{awesome-concrete}{HTML}{95A5A6}
+% \definecolor{awesome-darknight}{HTML}{131A28}
+% \colorlet{awesome}{awesome-red}
+
+%ENGLISH CV
 %-------------------------------------------------------------------------------
 % Gray-scale colors
 \definecolor{white}{HTML}{FFFFFF}
-\definecolor{black}{HTML}{242E3C}
-\definecolor{darkgray}{HTML}{242E3C}
-\definecolor{gray}{HTML}{475A79}
-\definecolor{lightgray}{HTML}{242E3C}
+\definecolor{black}{HTML}{000000}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{gray}{HTML}{5D5D5D}
+\definecolor{lightgray}{HTML}{999999}
 % Basic colors
 \definecolor{green}{HTML}{C2E15F}
 \definecolor{orange}{HTML}{FDA333}
@@ -134,7 +166,7 @@
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
 % Text colors
-\definecolor{darktext}{HTML}{242E3C}
+\definecolor{darktext}{HTML}{414141}
 \colorlet{text}{darkgray}
 \colorlet{graytext}{gray}
 \colorlet{lighttext}{lightgray}
@@ -142,7 +174,7 @@
 % Awesome colors
 \definecolor{awesome-emerald}{HTML}{00A388}
 \definecolor{awesome-skyblue}{HTML}{0395DE}
-\definecolor{awesome-red}{HTML}{75263A}
+\definecolor{awesome-red}{HTML}{3260D5}
 \definecolor{awesome-pink}{HTML}{EF4089}
 \definecolor{awesome-orange}{HTML}{FF6138}
 \definecolor{awesome-nephritis}{HTML}{27AE60}
@@ -156,7 +188,7 @@
 
 % Awesome section color
 \def\@sectioncolor#1#2#3{%
-  \ifbool{acvSectionColorHighlight}{{\color{text}#1#2#3}}{#1#2#3}%
+  \ifbool{acvSectionColorHighlight}{{\color{awesome}#1#2#3}}{#1#2#3}%
 }
 
 
