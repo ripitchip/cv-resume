@@ -279,6 +279,10 @@
 % Usage: \firstname{<firstname>}
 % Usage: \lastname{<lastname>}
 % Usage: \familyname{<familyname>}
+\newcommand{\python}{\href{https://www.python.org/}{Python}}
+\newcommand{\linux}{\href{https://www.linux.org/}{Linux}}
+\newcommand{\esilv}{\href{https://www.esilv.fr/}{ESILV }}
+\newcommand{\emlv}{\href{https://www.emlv.fr/}{EMLV}}
 \newcommand*{\name}[2]{\def\@firstname{#1}\def\@lastname{#2}}
 \newcommand*{\firstname}[1]{\def\@firstname{#1}}
 \newcommand*{\lastname}[1]{\def\@lastname{#1}}
