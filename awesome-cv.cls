@@ -456,8 +456,8 @@
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
 % Others
-\newcommand{\acvSectionTopSkip}{3mm}
-\newcommand{\acvSectionContentTopSkip}{2.5mm}
+\newcommand{\acvSectionTopSkip}{2mm}
+\newcommand{\acvSectionContentTopSkip}{1mm}
 
 
 %-------------------------------------------------------------------------------
@@ -700,7 +700,7 @@
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventry}[6]{%
-	\vspace{-2.0mm}
+	\vspace{-1.0mm}
 	\setlength\tabcolsep{0pt}
 	\setlength{\extrarowheight}{0pt}
 	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
@@ -787,11 +787,10 @@
 			}{%
 		\end{itemize}
 	\end{justify}
-	\vspace{-4.0mm}
 }
 
 \newenvironment{cvitemsskills}{%
-	\vspace{-5.0mm}
+    \vspace{-4.0mm}
 	\begin{justify}
 		\begin{itemize}[leftmargin=4ex, nosep, noitemsep]
 			\setlength{\parskip}{0pt}
@@ -799,7 +798,6 @@
 			}{%
 		\end{itemize}
 	\end{justify}
-	\vspace{-4.0mm}
 }
 
 %-------------------------------------------------------------------------------
