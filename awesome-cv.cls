@@ -126,7 +126,7 @@
 \definecolor{white}{HTML}{FFFFFF}
 \definecolor{black}{HTML}{242E3C}
 \definecolor{darkgray}{HTML}{242E3C}
-\definecolor{gray}{HTML}{475A79}
+\definecolor{gray}{HTML}{2b3649}
 \definecolor{lightgray}{HTML}{242E3C}
 % Basic colors
 \definecolor{green}{HTML}{C2E15F}
@@ -247,7 +247,7 @@
 \newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{awesome}\@sectioncolor #1}}
 \newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
+\newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} {#1}}}
 \newcommand*{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\lettertextstyle}{\fontsize{10pt}{1.4em}\bodyfontlight\upshape\color{graytext}}
 \newcommand*{\letternamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
@@ -840,18 +840,19 @@
 % Usage: \makelettertitle
 \newcommand*{\makelettertitle}{%
 	\vspace{8.4mm}
+    \recipientaddressstyle{\@letterdate}\\\\
 	\setlength\tabcolsep{0pt}
 	\setlength{\extrarowheight}{0pt}
 	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-		\recipienttitlestyle{\@recipientname} & \letterdatestyle{\@letterdate}
+		\recipienttitlestyle{\@recipientname}
 	\end{tabular*}
 	\begin{singlespace}
 		\recipientaddressstyle{\@recipientaddress} \\\\
 	\end{singlespace}
 	\ifthenelse{\isundefined{\@lettertitle}}
 	{}
-	{\lettertitlestyle{\@lettertitle} \\}
-	\lettertextstyle{\@letteropening}
+	{\lettertextstyle{\@letteropening} \\}
+	\lettertitlestyle{\@lettertitle}
 }
 
 % Define a closing of the cover letter
@@ -866,4 +867,199 @@
 		\\\\\\
 		\letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
 	}
+}
+\newcommand*{\makeclheader}[1][C]{%
+	\newcommand*{\drawphoto}{%
+		\ifthenelse{\isundefined{\@photo}}{}{%
+			\newlength{\photodim}
+			\ifthenelse{\equal{\@photoshape}{circle}}%
+			{\setlength{\photodim}{1.3cm}}%
+			{\setlength{\photodim}{1.8cm}}%
+			\ifthenelse{\equal{\@photoedge}{edge}}%
+			{\def\@photoborder{darkgray}}%
+			{\def\@photoborder{none}}%
+			\begin{tikzpicture}%
+				\node[\@photoshape, draw=\@photoborder, line width=0.3mm, inner sep=\photodim, fill overzoom image=\@photo] () {};
+			\end{tikzpicture}
+		}%
+	}
+	\newlength{\headertextwidth}
+	\newlength{\headerphotowidth}
+	\ifthenelse{\isundefined{\@photo}}{
+		\setlength{\headertextwidth}{\textwidth}
+		\setlength{\headerphotowidth}{0cm}
+	}{%
+		\setlength{\headertextwidth}{0.76\textwidth}
+		\setlength{\headerphotowidth}{0.24\textwidth}
+	}%
+	\begin{minipage}[c]{\headerphotowidth}%
+		\ifthenelse{\equal{\@photoalign}{left}}{\raggedright\drawphoto}{}
+	\end{minipage}
+	\begin{minipage}[c]{\headertextwidth}
+		\ifthenelse{\equal{#1}{L}}{\raggedright}{\ifthenelse{\equal{#1}{R}}{\raggedleft}{\centering}}
+		\headerfirstnamestyle{\@firstname}\headerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
+		\\[\acvHeaderAfterNameSkip]%
+		\ifthenelse{\isundefined{\@position}}{}{\headerpositionstyle{\@position\\[\acvHeaderAfterPositionSkip]}}%
+		\ifthenelse{\isundefined{\@address}}{}{\headeraddressstyle{\@address\\[\acvHeaderAfterAddressSkip]}}%
+		\headersocialstyle{%
+			\newbool{isstart}%
+			\setbool{isstart}{true}%
+			% \ifthenelse{\isundefined{\@mobile}}%
+			% {}%
+			% {%
+			% 	\href{\@teluri}{\faMobile\acvHeaderIconSep\@mobile}%
+			% 	\setbool{isstart}{false}%
+			% }%
+			% \ifthenelse{\isundefined{\@email}}%
+			% {}%
+			% {%
+			% 	\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+			% 	\href{mailto:\@email}{\faEnvelope\acvHeaderIconSep\@email}%
+			% }%
+			\ifthenelse{\isundefined{\@dateofbirth}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				% \mbox prevents wrapping of elements%
+				\mbox{\faBirthdayCake\acvHeaderIconSep\@dateofbirth}%
+			}%
+			\ifthenelse{\isundefined{\@homepage}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{http://\@homepage}{\faHome\acvHeaderIconSep\@homepage}%
+			}%
+			\ifthenelse{\isundefined{\@github}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep\@github}%
+			}%
+			\ifthenelse{\isundefined{\@gitlab}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://gitlab.com/\@gitlab}{\faGitlab\acvHeaderIconSep\@gitlab}%
+			}%
+			\ifthenelse{\isundefined{\@bitbucket}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://bitbucket.com/\@bitbucket}{\faBitbucket\acvHeaderIconSep\@bitbucket}%
+			}%
+			\ifthenelse{\isundefined{\@stackoverflowid}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://stackoverflow.com/users/\@stackoverflowid}{\faStackOverflow\acvHeaderIconSep\@stackoverflowname}%
+			}%
+			\ifthenelse{\isundefined{\@linkedin}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://www.linkedin.com/in/\@linkedin}{\faLinkedin\acvHeaderIconSep thomas-derudder}%
+			}%
+			\ifthenelse{\isundefined{\@orcid}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://orcid.org/\@orcid}{\faOrcid\acvHeaderIconSep\@orcid}%
+			}%
+			\ifthenelse{\isundefined{\@twitter}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://twitter.com/\@twitter}{\faTwitter\acvHeaderIconSep\@twitter}%
+			}%
+			\ifthenelse{\isundefined{\@mastodonname}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://\@mastodoninstance/@\@mastodonname}{\faMastodon\acvHeaderIconSep\@mastodonname}%
+			}%
+			\ifthenelse{\isundefined{\@skype}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\faSkype\acvHeaderIconSep\@skype%
+			}%
+			\ifthenelse{\isundefined{\@reddit}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://www.reddit.com/user/\@reddit}{\faReddit\acvHeaderIconSep\@reddit}%
+			}%
+			\ifthenelse{\isundefined{\@researchgate}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://www.researchgate.net/profile/\@researchgate}{\faResearchgate\acvHeaderIconSep\@researchgate}%
+			}%
+			\ifthenelse{\isundefined{\@xing}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://www.xing.com/profile/\@xing}{\faXingSquare\acvHeaderIconSep\@xing}
+			}%
+			\ifthenelse{\isundefined{\@medium}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://medium.com/@\@medium}{\faMedium\acvHeaderIconSep\@medium}%
+			}%
+			\ifthenelse{\isundefined{\@kaggle}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://kaggle.com/\@kaggle}{\faKaggle\acvHeaderIconSep\@kaggle}%
+			}%
+			\ifthenelse{\isundefined{\@hackerrank}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://www.hackerrank.com/\@hackerrank}{\faHackerrank\acvHeaderIconSep\@hackerrank}%
+			}%
+			\ifthenelse{\isundefined{\@googlescholarid}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{https://scholar.google.com/citations?user=\@googlescholarid}{\faGraduationCap\acvHeaderIconSep\@googlescholarname}%
+			}%
+			\ifthenelse{\isundefined{\@extrainfo}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\@extrainfo%
+			}%
+        } \vspace{-0.5cm}\\[\acvHeaderAfterSocialSkip]%
+		\headersocialstyle{%
+			\newbool{isstart}%
+			\setbool{isstart}{true}%
+			\ifthenelse{\isundefined{\@mobile}}%
+			{}%
+			{%
+				\href{\@teluri}{\faMobile\acvHeaderIconSep\@mobile}%
+				\setbool{isstart}{false}%
+			}%
+		}\vspace{-0.5cm}\\[\acvHeaderAfterSocialSkip]%
+		\headersocialstyle{%
+			\newbool{isstart}%
+			\setbool{isstart}{true}%
+			\ifthenelse{\isundefined{\@email}}%
+			{}%
+			{%
+				\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+				\href{mailto:\@email}{\faEnvelope\acvHeaderIconSep\@email}%
+			}%
+		}
+        \\[\acvHeaderAfterSocialSkip]%
+		\ifthenelse{\isundefined{\@quote}}%
+		{}%
+		{\headerquotestyle{\@quote\\}\vspace{\acvHeaderAfterQuoteSkip}}%
+			\newbool{isstart}%
+			\setbool{isstart}{true}%
+	\end{minipage}%
+	\begin{minipage}[c]{\headerphotowidth}%
+		\ifthenelse{\equal{\@photoalign}{right}}{\raggedleft\drawphoto}{}
+	\end{minipage}
 }
