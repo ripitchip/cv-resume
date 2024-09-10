@@ -1,0 +1,138 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template for Cover Letter
+%
+% This template has been downloaded from:
+% https://github.com/posquit0/Awesome-CV
+%
+% Authors:
+% Claud D. Park <posquit0.bj@gmail.com>
+% Lars Richter <mail@ayeks.de>
+%
+% Template license:
+% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+%
+
+
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% A4 paper size by default, use 'letterpaper' for US letter
+\documentclass[11pt, a4paper]{awesome-cv}
+
+% Configure page margins with geometry
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-red}
+% Uncomment if you would like to specify your own color
+% \definecolor{awesome}{HTML}{CA63A8}
+
+% Colors for text
+% Uncomment if you would like to specify your own color
+% \definecolor{darktext}{HTML}{414141}
+% \definecolor{text}{HTML}{333333}
+% \definecolor{graytext}{HTML}{5D5D5D}
+% \definecolor{lighttext}{HTML}{999999}
+% \definecolor{sectiondivider}{HTML}{5D5D5D}
+
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{true}
+
+% If you would like to change the social information separator from a pipe (|) to something else
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+
+%-------------------------------------------------------------------------------
+%	PERSONAL INFORMATION
+%	Comment any of the lines below if they are not required
+%-------------------------------------------------------------------------------
+% Available options: circle|rectangle,edge/noedge,left/right
+% \photo[circle,noedge,left]{./examples/profile}
+\name{Thomas}{DERUDDER}
+\position{Site Reliability Engineer{\enskip\cdotp\enskip}Software Developer }
+\address{40 avenue Clément Ader Montesson, France, (Paris)}
+\mobile{(+33) 6-03-11-44-59}
+\email{thomas@mypatch.fr}
+%\dateofbirth{January 1st, 1970}
+\homepage{www.mypatch.fr}
+% \github{posquit0}
+\linkedin{thomas-derudder-63080522b}
+\gitlab{ripitchip}
+% \gitlab{gitlab-id}
+% \stackoverflow{SO-id}{SO-name}
+% \twitter{@twit}
+% \skype{skype-id}
+% \reddit{reddit-id}
+% \medium{madium-id}
+% \kaggle{kaggle-id}
+% \hackerrank{hackerrank-id}
+% \googlescholar{googlescholar-id}{name-to-display}
+%% \firstname and \lastname will be used
+% \googlescholar{googlescholar-id}{}
+% \extrainfo{extra information}
+
+
+
+%-------------------------------------------------------------------------------
+%	LETTER INFORMATION
+%	All of the below lines must be filled out
+%-------------------------------------------------------------------------------
+% The company being applied to
+\recipient
+  {Directeur de recherche et d'innovation}
+  {Cégep de Sept-Îles\\175 Rue de la Vérendrye, \\Sept-Îles, QC G4R 5B7, Canada}
+% The date on the letter, default is the date of compilation
+\letterdate{\today}
+% The title of the letter
+\lettertitle{Candidature pour un Stage d'Ingénieur Logiciel en Développement Embarqué}
+% How the letter is opened
+\letteropening{Cher Dr. Laurent FERRIER,}
+% How the letter is closed
+\letterclosing{Je vous remercie par avance pour l'attention que vous porterez à ma candidature et reste à votre disposition pour toute information complémentaire.
+Dans l’attente de votre réponse, je vous prie d’agréer, Dr. Laurent FERRIER, l'expression de mes salutations distingués. }
+% Any enclosures with the letter
+\letterenclosure[Attached]{Curriculum Vitae}
+
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+% Print the header with above personal information
+% Give optional argument to change alignment(C: center, L: left, R: right)
+\hspace{8cm}\makeclheader[L]
+
+% Print the footer with 3 arguments(<left>, <center>, <right>)
+% Leave any of these blank if they are not needed
+% \makecvfooter
+%   {\today}
+%   {Thomas Derudder~~~·~~~Cover Letter}
+%   {}
+
+% Print the title with above letter information
+\makelettertitle
+
+%-------------------------------------------------------------------------------
+%	LETTER CONTENT
+%-------------------------------------------------------------------------------
+\begin{cvletter}
+
+Je vous écris pour exprimer mon intérêt pour un stage de recherche avec vous, comme recommandé par mon professeur, qui m'a parlé de manière élogieuse de votre travail innovant dans le domaine des télécommunications et du suivi ferroviaire. Je suis enthousiaste à l'idée de travailler avec vous en tant que stagiaire de recherche de la mi-avril à la fin août.
+
+En tant qu'étudiant en ingénierie informatique, j'ai développé une solide base en programmation, développement logiciel et gestion de projet. J'ai acquis des compétences en création de clusters automatisés, en gestion de projets et en partage de connaissances grâce à mon apprentissage au Ministère des Armées en France. De plus, mon expérience en tant que créateur de FabLab et instructeur en informatique et électronique m'a permis d'acquérir une bonne compréhension des technologies embarquées et de la construction d'objets connectés.
+
+Je suis particulièrement attiré par votre travail sur les systèmes de télécommunications aériennes et les technologies RFID, et je suis convaincu que mon expérience en développement logiciel et en gestion de projet pourrait être précieuse pour votre équipe. De plus, je suis passionné par la prise de nouveaux défis et par l'apport de mon énergie et de ma créativité à des projets qui repoussent les limites de la technologie.
+
+Je suis également très intéressé par l'opportunité de travailler à l'étranger et de découvrir de nouvelles cultures. Je suis convaincu que ce stage au Canada serait une excellente occasion pour moi de développer mes compétences et d'acquérir de l'expérience dans le domaine de la recherche.
+
+\end{cvletter}
+
+
+%-------------------------------------------------------------------------------
+% Print the signature and enclosures with above letter information
+\makeletterclosing
+
+\end{document}
+
